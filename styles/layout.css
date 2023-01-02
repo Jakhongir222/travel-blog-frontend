@@ -1,0 +1,104 @@
+:root {
+    --background-color: #EAEAEA;
+    --blue-color: #336B87;
+    --black-color: #37393A;
+    --light-blue-color: #76CCCF;
+    --white-color: aliceblue;
+}
+
+body {
+    background-color: var(--background-color);
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    translate: -5vw;
+    justify-content: space-evenly;
+    width: 105vw;
+    font-size: medium;
+    background-color: var(--background-color);
+    border-bottom: solid black;
+}
+
+
+.navbar-button {
+    cursor: pointer;
+    background-color: var(--background-color);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 0;
+    font-size: large;
+    padding: 10px;
+}
+
+.navbar-button:hover {
+    color: var(--blue-color);
+}
+
+
+.footer {
+    color: var(--black-color);
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;        
+}
+
+.welcoming-quote {
+    display: flex;
+    background-image: url('/ocean.jpg');
+    height: 600px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+}
+
+.home-page-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.explore-button {
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 20px 10px;
+    font-size: 50px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.spin {
+    animation: spin 3s linear ;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url('/compass.png');
+    background-size: cover;
+    background-position: center;
+    outline: none;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+

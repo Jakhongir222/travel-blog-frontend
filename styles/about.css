@@ -1,0 +1,45 @@
+
+.text {
+    position: absolute;
+    left: auto;
+    width: 450px;
+    margin-top: 150px;
+    padding: 15px;
+    margin-left: 20px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-color: aliceblue;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    height: 550px;
+    margin: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 6px;
+    background-image: url('/me.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+}
+
+
+.contacts {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left: 25px;
+    font-size: larger;
+    color: aliceblue;
+}
+
+
+.intro-text {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 25px;
+    color: solid black;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
