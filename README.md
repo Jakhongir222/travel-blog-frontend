@@ -1,34 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Full-stack-responsive-blog!
 
-First, run the development server:
+This project is made by Jakhongir Burkhonov. You can check it out [here](https://full-stack-responsive-blog-jakhongir222.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Travel Blog
+I build a travel blog, because I have a passion to travel and wanted to help others to discovoer new countries and learn about their culture. In this blog
+I will be giving information about diffirent countriees around the world. I hope my website will keep people entertained and at the same time 
+educate them in a fun way. I chose very interesting and axciting countries and added them to my database and constantly growing the number of countries. 
+I made my app is easy to use, so that people from all age ranges can easily navigate though it. I hope you will have a pleasent experience after using my app.
+Plaese contact me if you have queastions or further inquiries. You can find my contacts on the about page. Happy browsing...
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technology
+The project is a Full-Stack application. Technologies used include;
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+* Java 18 
+* REST-ful API 
+* Spring boot
+* PostgresSQL
+* Java Script
+* React 
+* Next.js v. 13
+* next-auth@4.17.0 with google provider
+* Unsplash API
+* CSS
+* Microsoft Azzure
+* Vercel
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Tools
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+* IntelliJ 
+* VSCode
+* Figma
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Thank you for your interest!
