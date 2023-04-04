@@ -1,6 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import "../../styles/destination.css"
+import axios from 'axios'
+
 
 function DestinationComponent() {
 
@@ -20,7 +22,7 @@ function DestinationComponent() {
 
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
-  const baseURL = 'http://localhost:8080/article';
+  const baseURL = 'https://travelblog-backend-production.up.railway.app/articles';
 
   useEffect(() => {
     setLoading(true)
@@ -32,17 +34,30 @@ function DestinationComponent() {
       })
   }, [])
 
+  const handleDelete = (id) => {
+    axios.delete(`https://travelblog-backend-production.up.railway.app/articles/${id}`)
+      .then(() => {
+        const newData = data.filter(item => item.articleId !== id);
+        setData(newData);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  
+
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>Page is loading</p>
 
   return (
     <div className='articles'>
-      {data.map((item, index) => (
+      {data.map((item) => (
         <>
           <div className='article-cart'>
           <img className='article-image' src={images[item.articleTitle]} width='368' height='250'/>
-            <p className='article-title' key={index}>{item.articleTitle}</p>
-            <p className='article-text' key={item.articleId}>{item.articleText}</p>
+            <p className='article-title' key={item.articleTitle}>{item.articleTitle}</p>
+            <p className='article-text' key={item.articleText}>{item.articleText}</p>
+            <button onClick={() => handleDelete(item.articleId)}>Delete</button>
           </div>
         </>
       ))}
