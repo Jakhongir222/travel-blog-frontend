@@ -57,7 +57,9 @@ function DestinationComponent() {
           <img className='article-image' src={images[item.articleTitle]} width='368' height='250'/>
             <p className='article-title' key={item.articleTitle}>{item.articleTitle}</p>
             <p className='article-text' key={item.articleText}>{item.articleText}</p>
-            <button onClick={() => handleDelete(item.articleId)}>Delete</button>
+            <div class="button-container">
+            <button className='edit-button'>Edit</button>
+            <button className='delete-button' onClick={() => handleDelete(item.articleId)}>Delete</button></div>
           </div>
         </>
       ))}
