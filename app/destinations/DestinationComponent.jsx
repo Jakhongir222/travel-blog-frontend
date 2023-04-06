@@ -20,76 +20,99 @@ function DestinationComponent() {
     'Turkey': 'https://images.unsplash.com/photo-1589561454226-796a8aa89b05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8VHVya2V5fGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
   };
 
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
-  const baseURL = 'https://travelblog-backend-production.up.railway.app/articles/';
+
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [destinationToEdit, setDestinationToEdit] = useState(null);
+  const baseURL = 'https://travelblog-backend-production.up.railway.app/articles';
 
   useEffect(() => {
-    setLoading(true)
-    fetch(baseURL)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data)
-        setLoading(false)
+    setLoading(true);
+    axios.get(baseURL)
+      .then((response) => {
+        setData(response.data);
       })
-  }, [])
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const handleDelete = (id) => {
-    axios.delete(baseURL+`/${id}`)
+    axios.delete(`${baseURL}/${id}`)
       .then(() => {
-        const newData = data.filter(item => item.articleId !== id);
-        setData(newData);
+        setData((prevState) => prevState.filter(item => item.articleId !== id));
       })
       .catch(error => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
-  const handleUpdate = (id, updatedTitle, updatedText) =>{
-    axios.put(baseURL+`${id}`, {
+  const handleUpdate = (id, updatedTitle, updatedText) => {
+    axios.put(`${baseURL}/${id}`, {
       articleTitle: updatedTitle,
       articleText: updatedText
     })
-    .then(()=> {
-      const updatedData = data.map(item => {
-        if (item.articleId === id) {
-          return {
-            ...item,
-            articleTitle: updatedTitle,
-            articleText: updatedText
-          }
-        }
-        return item;
+      .then(() => {
+        setData((prevState) => {
+          return prevState.map(item => {
+            if (item.articleId === id) {
+              return {
+                ...item,
+                articleTitle: updatedTitle,
+                articleText: updatedText
+              };
+            }
+            return item;
+          });
+        });
+        setEditMode(false);
+        setDestinationToEdit(null);
+      })
+      .catch(error => {
+        console.log(error);
       });
-      setData(updatedData);
-    }).catch(error=> {
-      console.log(error);
-    })
-  }
-  
-  
+  };
 
-  
+  const handleEdit = (id) => {
+    setEditMode(true);
+    const destination = data.find(item => item.articleId === id);
+    setDestinationToEdit(destination);
+  };
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>Page is loading</p>
+  if (isLoading) return <p>Loading...</p>;
+  if (!data.length) return <p>No data to show</p>;
 
   return (
     <div className='articles'>
       {data.map((item) => (
-        <>
-          <div className='article-cart'>
-          <img className='article-image' src={images[item.articleTitle]} width='368' height='250'/>
-            <p className='article-title' key={item.articleTitle}>{item.articleTitle}</p>
-            <p className='article-text' key={item.articleText}>{item.articleText}</p>
-            <div class="button-container">
-            <button className='edit-button' onClick={()=> handleUpdate(item.articleId)}>Edit</button>
-            <button className='delete-button' onClick={() => handleDelete(item.articleId)}>Delete</button></div>
-          </div>
-        </>
+        <div className='article-cart' key={item.articleId}>
+          <img className='article-image' src={images[item.articleTitle]} alt={item.articleTitle} width='368' height='250' />
+          {editMode && destinationToEdit && destinationToEdit.articleId === item.articleId ? (
+            <div className='article-edit'>
+              <input type='text' defaultValue={destinationToEdit.articleTitle} onChange={(e) => setDestinationToEdit({ ...destinationToEdit, articleTitle: e.target.value })} />
+              <textarea defaultValue={destinationToEdit.articleText} onChange={(e) => setDestinationToEdit({ ...destinationToEdit, articleText: e.target.value })} />
+              <button className='save-button' onClick={() => handleUpdate(destinationToEdit.articleId, destinationToEdit.articleTitle, destinationToEdit.articleText)}>Save</button>
+              <button className='cancel-button' onClick={() => setEditMode(false)}>Cancel</button>
+            </div>
+          ) : (
+            <>
+              <p className='article-title'>{item.articleTitle}</p>
+              <p className='article-text'>{item.articleText}</p>
+              <div className="button-container">
+                <button className='edit-button' onClick={() => handleEdit(item)}>Edit</button>
+                <button className='delete-button' onClick={() => handleDelete(item.articleId)}>Delete</button>
+              </div>
+            </>
+          )}
+        </div>
       ))}
     </div>
-  )
+  );
+  
 }
 
-export default DestinationComponent
+export default DestinationComponent;
