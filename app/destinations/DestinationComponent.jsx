@@ -22,7 +22,7 @@ function DestinationComponent() {
 
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
-  const baseURL = 'https://travelblog-backend-production.up.railway.app/articles';
+  const baseURL = 'https://travelblog-backend-production.up.railway.app/articles/';
 
   useEffect(() => {
     setLoading(true)
@@ -35,7 +35,7 @@ function DestinationComponent() {
   }, [])
 
   const handleDelete = (id) => {
-    axios.delete(`https://travelblog-backend-production.up.railway.app/articles/${id}`)
+    axios.delete(baseURL+`/${id}`)
       .then(() => {
         const newData = data.filter(item => item.articleId !== id);
         setData(newData);
@@ -44,6 +44,31 @@ function DestinationComponent() {
         console.log(error)
       })
   }
+
+  const handleUpdate = (id, updatedTitle, updatedText) =>{
+    axios.put(baseURL+`${id}`, {
+      articleTitle: updatedTitle,
+      articleText: updatedText
+    })
+    .then(()=> {
+      const updatedData = data.map(item => {
+        if (item.articleId === id) {
+          return {
+            ...item,
+            articleTitle: updatedTitle,
+            articleText: updatedText
+          }
+        }
+        return item;
+      });
+      setData(updatedData);
+    }).catch(error=> {
+      console.log(error);
+    })
+  }
+  
+  
+
   
 
   if (isLoading) return <p>Loading...</p>
@@ -58,7 +83,7 @@ function DestinationComponent() {
             <p className='article-title' key={item.articleTitle}>{item.articleTitle}</p>
             <p className='article-text' key={item.articleText}>{item.articleText}</p>
             <div class="button-container">
-            <button className='edit-button'>Edit</button>
+            <button className='edit-button' onClick={()=> handleUpdate(item.articleId)}>Edit</button>
             <button className='delete-button' onClick={() => handleDelete(item.articleId)}>Delete</button></div>
           </div>
         </>
