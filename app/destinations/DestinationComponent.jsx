@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import "../../styles/destination.css"
 import axios from 'axios'
+import { NewDestination } from './NewDestination';
 
 
 function DestinationComponent() {
@@ -87,6 +88,8 @@ function DestinationComponent() {
   if (!data.length) return <p>No data to show</p>;
 
   return (
+    <div>
+      <NewDestination/>
     <div className='articles'>
       {data.map((item) => (
         <div className='article-cart' key={item.articleId}>
@@ -110,6 +113,7 @@ function DestinationComponent() {
           )}
         </div>
       ))}
+    </div>
     </div>
   );
   
