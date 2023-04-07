@@ -21,7 +21,6 @@ function DestinationComponent() {
     'Turkey': 'https://images.unsplash.com/photo-1589561454226-796a8aa89b05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8VHVya2V5fGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
   };
 
-
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -84,13 +83,26 @@ function DestinationComponent() {
     setDestinationToEdit(destination);
   };
 
+  const getNewDestination = async () => {
+    try {
+      const response = await axios.get(baseURL);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleNewDestinationSubmit = () => {
+    getNewDestination();
+  }
+
   if (isLoading) return <p>Loading...</p>;
   if (!data.length) return <p>No data to show</p>;
 
   return (
     <div>
-      <NewDestination/>
-    <div className='articles'>
+     <NewDestination onNewDestinationSubmit={getNewDestination} />    
+     <div className='articles'>
       {data.map((item) => (
         <div className='article-cart' key={item.articleId}>
           <img className='article-image' src={images[item.articleTitle]} alt={item.articleTitle} width='368' height='250' />

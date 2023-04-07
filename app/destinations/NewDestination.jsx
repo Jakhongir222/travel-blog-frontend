@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import "../../styles/NewDestination.css"
+
 
 export const NewDestination = () => {
 
@@ -30,27 +32,38 @@ export const NewDestination = () => {
         setArticle((prevArticle) => ({ ...prevArticle, [name]: value }));
     };
 
+    
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor='articleTitle'>Title:</label>
-            <input
-                type='text'
-                id='articleTitle'
-                name='articleTitle'
-                value={article.articleTitle}
-                onChange={handleChange}
-            />
-            <br/>
-            <label htmlFor='articleText'>Text:</label>
-            <input
-                type='text'
-                id='articleText'
-                name='articleText'
-                value={article.articleText}
-                onChange={handleChange}
-            />
-            <br/>
-            <button type='submit'>Submit</button>
+        <form onSubmit={handleSubmit} className="new-destination-form">
+          <h2 className="form-heading">New Destination</h2>
+          <label htmlFor="articleTitle" className="form-label">
+            Title:
+          </label>
+          <input
+            type="text"
+            id="articleTitle"
+            name="articleTitle"
+            value={article.articleTitle}
+            onChange={handleChange}
+            className="form-input"
+          />
+          <br />
+          <label htmlFor="articleText" className="form-label">
+            Text:
+          </label>
+          <input 
+            type="text"
+            id="articleText"
+            name="articleText"
+            value={article.articleText}
+            onChange={handleChange}
+            className="text-input"
+          />
+          <br />
+          <button type="submit" className="form-button">
+            Submit
+          </button>
         </form>
-    )
+      );
 }
