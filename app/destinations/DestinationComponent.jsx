@@ -92,9 +92,6 @@ function DestinationComponent() {
     }
   }
 
-  const handleNewDestinationSubmit = () => {
-    getNewDestination();
-  }
 
   if (isLoading) return <p>Loading...</p>;
   if (!data.length) return <p>No data to show</p>;
