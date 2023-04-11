@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles/NewDestination.css"
 
-
 export const NewDestination = () => {
 
     const [article, setArticle] = useState({ articleTitle: '', articleText: '' });
